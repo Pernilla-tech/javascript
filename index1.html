@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+  <meta charset="utf-8">
+  <title>Random names</title>
+  <meta content="initial-scale=1, width=device-width" name="viewport">
+</head>
+
+<body>
+  <div id="app">
+    <p v-for="name in object"> {{ name }}</p>
+  </div>
+
+  <script>
+
+    Vue.createApp({
+      created() {
+        fetch("https://random-names-api.herokuapp.com/random")
+          .then((response) => response.json())
+          .then((result) => {
+            this.name = result
+
+          })
+      },
+      data() {
+        return { name: '' }
+      }
+    }).mount('#app')
+  </script>
+</body>
+
+</html>
